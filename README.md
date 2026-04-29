@@ -1,7 +1,9 @@
-# My Portfolio Website - Overview 🚀
+# Muhammad Amir's Portfolio Website 🚀
 
-This repository contains the open-source version of my personal portfolio website.  
-Feel free to explore the code and use it for learning and inspiration.
+This repository contains the source code for my personal portfolio website.
+I am Muhammad Amir, a 19-year-old Software Developer specializing in Web Technologies and AI.
+
+Feel free to explore the code, use it for learning, and draw inspiration from it.
 
 ---
 
@@ -10,26 +12,30 @@ Feel free to explore the code and use it for learning and inspiration.
 This project is shared for learning purposes only.
 
 Please do NOT:
-- Clone or replicate the full website or design
+- Clone or replicate the full website or design without making it your own
 - Repost it with minor content changes
-- Use this project for commercial/client work
-- Create tutorials or content using this exact project
+- Use this project for commercial/client work directly
 
-If you use parts of the code, you must provide proper credit linking back to the original repository.
+If you use parts of the code, please provide proper credit linking back to this repository.
 
 Build your own version — don’t just copy.
 
-— Moncy Yohannan
+— Muhammad Amir
 
 ---
 
 ## 🛠️ Instructions
 
-I have modified the GSAP Club plugins using trial versions.  
-⚠️ Note: Trial plugins cannot be used for production or hosting.
+To run this project locally:
 
-For official GSAP Club plugins, refer here:  
-https://gsap.com/docs/v3/Installation/
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
 ---
 
@@ -41,25 +47,11 @@ React • TypeScript • GSAP • Three.js • WebGL • HTML • CSS • JavaSc
 
 ## 🎨 Assets Usage
 
-Some 3D assets included in this repository are free to use for learning purposes.
-
-However:
-
-- The original 3D avatar used on my live portfolio is NOT included in this repository
-- That avatar is a custom asset created over ~1 month
-- It is not open source and not available for reuse
-
-Any usage, extraction, or redistribution of that avatar from my live website is strictly prohibited.
-
----
-
-![Protfolio-Preview](https://github.com/user-attachments/assets/3c4557e7-6392-4928-b8a9-7b2476ef4edd)
+The 3D assets and personal images used in this repository are tailored for my portfolio.
+Any usage, extraction, or redistribution of my personal avatar or specific branding elements is strictly prohibited.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the Personal Portfolio License (PPL) v1.0.
-
-See the LICENSE file for full details
-
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
