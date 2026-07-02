@@ -39,6 +39,13 @@ const setCharacter = (
             resolve(gltf);
             setCharTimeline(character, camera);
             setAllTimeline();
+
+            // Center the character horizontally
+            const box = new THREE.Box3().setFromObject(character);
+            const center = box.getCenter(new THREE.Vector3());
+            character.position.x = -center.x;
+            character.position.z = -center.z;
+
             character!.getObjectByName("footR")!.position.y = 3.36;
             character!.getObjectByName("footL")!.position.y = 3.36;
             dracoLoader.dispose();
