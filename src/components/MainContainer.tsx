@@ -31,7 +31,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   }, [isDesktopView]);
 
   return (
-    <div className="container-main">
+    <main className="container-main">
       <Cursor />
       <Navbar />
       <SocialIcons />
@@ -49,7 +49,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

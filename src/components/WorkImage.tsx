@@ -30,13 +30,14 @@ const WorkImage = (props: Props) => {
         onMouseLeave={() => setIsVideo(false)}
         target="_blank"
         data-cursor={"disable"}
+        aria-label={props.alt || "View Work Details"}
       >
         {props.link && (
           <div className="work-link">
             <MdArrowOutward />
           </div>
         )}
-        <img src={props.image} alt={props.alt} />
+        <img src={props.image} alt={props.alt || "Work Thumbnail"} loading="lazy" />
         {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
       </a>
     </div>

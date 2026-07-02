@@ -4,7 +4,7 @@ import "./styles/Landing.css";
 const Landing = ({ children }: PropsWithChildren) => {
   return (
     <>
-      <div className="landing-section" id="landingDiv">
+      <section className="landing-section" id="landingDiv">
         <div className="landing-container">
           <div className="landing-intro">
             <h2>Hello! I'm</h2>
@@ -27,7 +27,7 @@ const Landing = ({ children }: PropsWithChildren) => {
           </div>
         </div>
         {children}
-      </div>
+      </section>
     </>
   );
 };
