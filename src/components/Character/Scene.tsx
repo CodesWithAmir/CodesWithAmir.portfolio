@@ -29,7 +29,7 @@ const Scene = () => {
 
       const renderer = new THREE.WebGLRenderer({
         alpha: true,
-        antialias: true,
+        antialias: false,
         stencil: false,
         depth: true,
         powerPreference: "high-performance",
