@@ -26,6 +26,7 @@ const setCharacter = (
         loader.load(
           blobUrl,
           async (gltf) => {
+            URL.revokeObjectURL(blobUrl);
             character = gltf.scene;
             await renderer.compileAsync(character, camera, scene);
             character.traverse((child: any) => {
@@ -52,6 +53,7 @@ const setCharacter = (
           },
           undefined,
           (error) => {
+            URL.revokeObjectURL(blobUrl);
             console.error("Error loading GLTF model:", error);
             reject(error);
           }

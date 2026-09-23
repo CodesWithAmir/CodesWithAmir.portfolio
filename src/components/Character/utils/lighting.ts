@@ -3,6 +3,8 @@ import { RGBELoader } from "three-stdlib";
 import { gsap } from "gsap";
 
 const setLighting = (scene: THREE.Scene) => {
+  let environmentTexture: THREE.Texture | null = null;
+  let disposed = false;
   const directionalLight = new THREE.DirectionalLight(0xc7a9ff, 0);
   directionalLight.intensity = 0;
   directionalLight.position.set(-0.47, -0.32, -1);
@@ -21,6 +23,11 @@ const setLighting = (scene: THREE.Scene) => {
   new RGBELoader()
     .setPath("/models/")
     .load("char_enviorment.hdr", function (texture) {
+      if (disposed) {
+        texture.dispose();
+        return;
+      }
+      environmentTexture = texture;
       texture.mapping = THREE.EquirectangularReflectionMapping;
       scene.environment = texture;
       scene.environmentIntensity = 0;
@@ -28,7 +35,7 @@ const setLighting = (scene: THREE.Scene) => {
     });
 
   function setPointLight(screenLight: any) {
-    if (screenLight.material.opacity > 0.9) {
+    if (screenLight?.material?.opacity > 0.9) {
       pointLight.intensity = screenLight.material.emissiveIntensity * 20;
     } else {
       pointLight.intensity = 0;
@@ -55,7 +62,16 @@ const setLighting = (scene: THREE.Scene) => {
     });
   }
 
-  return { setPointLight, turnOnLights };
+  function dispose() {
+    disposed = true;
+    environmentTexture?.dispose();
+    scene.environment = null;
+    gsap.killTweensOf(scene);
+    gsap.killTweensOf(directionalLight);
+    gsap.killTweensOf(".character-rim");
+  }
+
+  return { setPointLight, turnOnLights, dispose };
 };
 
 export default setLighting;

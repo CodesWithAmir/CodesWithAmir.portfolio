@@ -5,6 +5,8 @@ import { eyebrowBoneNames, typingBoneNames } from "../../../data/boneData";
 const setAnimations = (gltf: GLTF) => {
   let character = gltf.scene;
   let mixer = new THREE.AnimationMixer(character);
+  let introTimeout: number | undefined;
+  let cleanupHover: (() => void) | undefined;
   if (gltf.animations) {
     const introClip = gltf.animations.find(
       (clip) => clip.name === "introAnimation"
@@ -39,9 +41,10 @@ const setAnimations = (gltf: GLTF) => {
     const introAction = mixer.clipAction(introClip!);
     introAction.clampWhenFinished = true;
     introAction.reset().play();
-    setTimeout(() => {
+    if (introTimeout !== undefined) clearTimeout(introTimeout);
+    introTimeout = window.setTimeout(() => {
       const blink = gltf.animations.find((clip) => clip.name === "Blink");
-      mixer.clipAction(blink!).play().fadeIn(0.5);
+      if (blink) mixer.clipAction(blink).play().fadeIn(0.5);
     }, 2500);
   }
   function hover(gltf: GLTF, hoverDiv: HTMLDivElement) {
@@ -75,12 +78,18 @@ const setAnimations = (gltf: GLTF) => {
     if (!hoverDiv) return;
     hoverDiv.addEventListener("mouseenter", onHoverFace);
     hoverDiv.addEventListener("mouseleave", onLeaveFace);
-    return () => {
+    cleanupHover = () => {
       hoverDiv.removeEventListener("mouseenter", onHoverFace);
       hoverDiv.removeEventListener("mouseleave", onLeaveFace);
     };
+    return cleanupHover;
   }
-  return { mixer, startIntro, hover };
+  function dispose() {
+    if (introTimeout !== undefined) clearTimeout(introTimeout);
+    cleanupHover?.();
+    mixer.stopAllAction();
+  }
+  return { mixer, startIntro, hover, dispose };
 };
 
 const createBoneAction = (
